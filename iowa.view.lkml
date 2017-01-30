@@ -64,9 +64,19 @@ view: iowa {
 
   dimension_group: date {
     type: time
-#     timeframes: [date,year,month,day_of_week,day_of_month,month_name,hour_of_day]
     convert_tz: no
     sql: ${TABLE}.date ;;
+  }
+
+  dimension_group: today {
+    type: time
+    convert_tz: no
+    sql: CURRENT_DATE ;;
+  }
+
+  dimension: same_week_of_year_as_today {
+    type: yesno
+    sql: ${today_week_of_year} = ${date_week_of_year} ;;
   }
 
   dimension: item_description {
@@ -98,7 +108,7 @@ view: iowa {
   measure: sum_of_sales {
     type: sum
     sql: ${sale_dollars} ;;
-    value_format_name:  decimal_2
+    value_format_name:  usd
   }
 
   dimension: store_id {
