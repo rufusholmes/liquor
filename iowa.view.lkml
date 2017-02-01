@@ -45,6 +45,13 @@ view: iowa {
   dimension: category_name {
     type: string
     sql: ${TABLE}.category_name ;;
+    html: {{ linked_value }}
+    <a href="/dashboards/4?categoryname={{ value }}" target="_new"</a> ;;
+  }
+
+  dimension: category_image {
+      sql: ${category_id} ;;
+      html: <img src="http://www.acme.com/product_images/{{ value }}.jpg" /> ;;
   }
 
   dimension: city {

@@ -5,7 +5,7 @@ sql:
 , COUNT(*) AS lifetime_orders
 , MIN(NULLIF(iowa.date,0)) AS first_ordered
 , MAX(NULLIF(iowa.date,0)) AS last_ordered
-, COUNT(DISTINCT CONCAT(MONTH(NULLIF(iowa.date,0))),YEAR(NULLIF(iowa.date,0))) AS number_of_distinct_months_with_orders
+--, COUNT(DISTINCT CONCAT(MONTH(NULLIF(iowa.date,0))),YEAR(NULLIF(iowa.date,0))) AS number_of_distinct_months_with_orders
 FROM iowa
 GROUP BY id ;;
 indexes: ["id"]
