@@ -13,13 +13,21 @@ view: iowa {
   }
 
   dimension: bottle_cost {
-    type: string
-    sql: ${TABLE}.bottle_cost ;;
+    type: number
+    value_format_name: usd
+    sql: cast(substring(${TABLE}.bottle_cost FROM '[0-9]+.[0-9]+') as money) ;;
   }
 
   dimension: bottle_retail {
-    type: string
-    sql: ${TABLE}.bottle_retail ;;
+    type: number
+    value_format_name: usd
+    sql: cast(substring(${TABLE}.bottle_retail FROM '[0-9]+.[0-9]+') as money) ;;
+  }
+
+  dimension: profit {
+    type:  number
+    value_format_name: usd
+    sql: ${bottle_retail} - ${bottle_cost} ;;
   }
 
   dimension: bottle_volume_ml {
