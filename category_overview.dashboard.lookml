@@ -1,5 +1,5 @@
 - dashboard: category_overview
-  title: Category Overview
+  title: Category Highlights
   layout: tile
   tile_size: 100
 
@@ -90,7 +90,6 @@
     comparison_reverse_colors: false
     show_comparison_label: true
     series_types: {}
-
     model: liquor
     explore: iowa
     dimensions: [iowa.date_month_name]
@@ -127,7 +126,7 @@
     measures: [iowa.count, iowa.sum_of_sales]
     listen:
       category: iowa.category_name
-    sorts: [iowa.count desc]
+    sorts: [iowa.sum_of_sales desc]
     limit: 10
     width: 6
     height: 4
@@ -141,7 +140,22 @@
     measures: [iowa.count, iowa.sum_of_sales]
     listen:
       category: iowa.category_name
-    sorts: [iowa.count desc]
+    sorts: [iowa.sum_of_sales desc]
     limit: 10
     width: 6
     height: 4
+
+  - name: top_seller
+    title: "Top Vendors of This Category"
+    type: table
+    model: liquor
+    explore: iowa
+    dimensions: [iowa.vendor_name, iowa.city]
+    measures: [iowa.count, iowa.sum_of_sales]
+    listen:
+      category: iowa.category_name
+    sorts: [iowa.sum_of_sales desc]
+    limit: 10
+    width: 6
+    height: 4
+

@@ -24,6 +24,11 @@ view: iowa {
     sql: cast(substring(${TABLE}.bottle_retail FROM '[0-9]+.[0-9]+') as money) ;;
   }
 
+  measure: average_bottle_retail {
+    type: average
+    sql:  cast(${bottle_retail} as numeric) ;;
+  }
+
   dimension: profit {
     type:  number
     value_format_name: usd
@@ -33,7 +38,7 @@ view: iowa {
   measure:  average_profit {
     type:  average
     value_format_name: usd
-    sql:  ${profit} ;;
+    sql:  cast(${profit} as money) ;;
   }
 
 
@@ -61,7 +66,7 @@ view: iowa {
   dimension: category_name {
     type: string
     sql: ${TABLE}.category_name ;;
-    html: <a href="/dashboards/4?categoryname={{ value }}">{{ value }}</a> ;;
+    html: <a href="/dashboards/liquor::category_overview?category={{ value }}" target="_blank">{{ value }}</a> ;;
   }
 
   dimension: category_image {
