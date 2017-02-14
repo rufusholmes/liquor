@@ -11,7 +11,7 @@
     model: liquor
     explore: iowa
     field: ${iowa.category_name}
-    default_value: vodka
+    default_value: '%VODKA%'
 
   elements:
 

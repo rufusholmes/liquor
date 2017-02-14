@@ -53,8 +53,7 @@ view: iowa {
   dimension: category_name {
     type: string
     sql: ${TABLE}.category_name ;;
-    html: {{ linked_value }}
-    <a href="/dashboards/4?categoryname={{ value }}" target="_new"</a> ;;
+    html: <a href="/dashboards/4?categoryname={{ value }}">{{ value }}</a> ;;
   }
 
   dimension: category_image {
@@ -138,14 +137,14 @@ view: iowa {
 
   dimension: latitude {
     type: number
-    sql: REGEXP_EXTRACT(iowa.store_location,"[\\-\\+]?[0-9]*\\.[0-9]+") ;;
-    hidden: yes
+    sql: regexp_matches(iowa.store_location, '[\\-\\+]?[0-9]*\\.[0-9]+') ;;
+    hidden: no
   }
 
   dimension: longitude {
     type: number
-    sql: REGEXP_EXTRACT(iowa.store_location,"[\\-\\+][0-9]*\\.[0-9]+") ;;
-    hidden: yes
+    sql: regexp_matches(iowa.store_location, '[\\-\\+][0-9]*\\.[0-9]+') ;;
+    hidden:  no
   }
 
   dimension: location {
