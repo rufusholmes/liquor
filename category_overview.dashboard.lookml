@@ -90,6 +90,8 @@
       color: "#000000", value_format: "$#,##0"}]
     width: 6
     height: 3
+    listen:
+      category: iowa.category_name
 
   - name: average_order_value
     type: single_value
