@@ -137,13 +137,13 @@ view: iowa {
 
   dimension: latitude {
     type: number
-    sql: regexp_matches(iowa.store_location, '[\\-\\+]?[0-9]*\\.[0-9]+') ;;
+    sql: cast(substring(${TABLE}.store_location FROM '[0-9]+\.[0-9]+') as numeric) ;;
     hidden: no
   }
 
   dimension: longitude {
     type: number
-    sql: regexp_matches(iowa.store_location, '[\\-\\+][0-9]*\\.[0-9]+') ;;
+    sql: cast(substring(${TABLE}.store_location FROM '-[0-9]+\.[0-9]+') as numeric) ;;
     hidden:  no
   }
 
