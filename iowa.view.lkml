@@ -27,8 +27,16 @@ view: iowa {
   dimension: profit {
     type:  number
     value_format_name: usd
-    sql: ${bottle_retail} - ${bottle_cost} ;;
+    sql: cast((${bottle_retail} - ${bottle_cost}) as numeric) ;;
   }
+
+  measure:  average_profit {
+    type:  average
+    value_format_name: usd
+    sql:  ${profit} ;;
+  }
+
+
 
   dimension: bottle_volume_ml {
     type: number

@@ -45,7 +45,7 @@
     height: 2
 
   - name: sales_over_time
-    title: "Annual Sales"
+    title: "Monthly Sales Trend"
     type: looker_line
     model: liquor
     explore: iowa
@@ -128,12 +128,12 @@
     listen:
       category: iowa.category_name
     sorts: [iowa.count desc]
-    limit: 500
+    limit: 10
     width: 6
     height: 4
 
   - name: connoisseur
-    title: "Top Purchasers of "
+    title: "Top Purchasers of This Category"
     type: table
     model: liquor
     explore: iowa
@@ -142,5 +142,6 @@
     listen:
       category: iowa.category_name
     sorts: [iowa.count desc]
-    limit: 15
+    limit: 10
     width: 6
+    height: 4
