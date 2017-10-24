@@ -69,9 +69,24 @@ view: iowa {
     html: <a href="/dashboards/liquor::category_overview?category={{ value }}" target="_blank">{{ value }}</a> ;;
   }
 
+  dimension: category_name_this_week {
+    type: string
+    sql: CASE WHEN ${today_week_of_year} = ${date_week_of_year} THEN ${TABLE}.category_name END ;;
+    html: <a href="/dashboards/liquor::category_overview?category={{ value }}" target="_blank">{{ value }}</a> ;;
+  }
+
   dimension: category_image {
       sql: ${category_id} ;;
-      html: <img src="http://www.acme.com/product_images/{{ value }}.jpg" /> ;;
+      html: <img src="https://www.hangoverprices.com/wp-content/uploads/2015/10/vodka-bottles.jpg" /> ;;
+  }
+
+  dimension: consolidated_category {
+    sql: case when lower(${category_name}) like '%whisk%' then 'Whiskey'
+      when lower(${category_name}) like '%vodka%' then 'Vodka'
+      when lower(${category_name}) like '%rum%' then 'Rum'
+      when lower(${category_name}) like '%tequila%' then 'Tequila'
+      when lower(${category_name}) like '%gin%' then 'Gin'
+      else 'Other' end ;;
   }
 
   dimension: city {
