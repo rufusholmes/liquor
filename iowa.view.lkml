@@ -15,24 +15,26 @@ view: iowa {
   dimension: bottle_cost {
     type: number
     value_format_name: usd
-    sql: cast(substring(${TABLE}.bottle_cost FROM '[0-9]+.[0-9]+') as money) ;;
+    sql: cast(substring(${TABLE}.bottle_cost,2,5)) ;;
   }
 
   dimension: bottle_retail {
     type: number
     value_format_name: usd
-    sql: cast(substring(${TABLE}.bottle_retail FROM '[0-9]+.[0-9]+') as money) ;;
+    sql: cast(substring(${TABLE}.bottle_retail,2,5) as float) ;;
+    hidden:  yes
   }
 
   measure: average_bottle_retail {
     type: average
-    sql:  to_number(${bottle_retail}) ;;
+    sql: ${bottle_retail} ;;
+    value_format_name: usd
   }
 
   dimension: profit {
     type:  number
     value_format_name: usd
-    sql: cast((${bottle_retail} - ${bottle_cost}) as money) ;;
+    sql: ${bottle_retail} - ${bottle_cost} ;;
   }
 
   measure:  average_profit {
